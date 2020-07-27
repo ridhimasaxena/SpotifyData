@@ -66,8 +66,6 @@ ui <- fluidPage(theme = shinytheme("flatly"),
                         hr(),
                         tags$b("Plot:"),
                         checkboxInput("se", "Add confidence interval around the regression line", TRUE),
-                        #textInput("xlab", label = "Axis labels:", value = "x", placeholder = "Valence"),
-                        #textInput("ylab", label = NULL, value = "y", placeholder = "Popularity"),
                         hr(),
                         
                         radioButtons("format", "Download report:", c("HTML", "PDF", "Word"),
@@ -77,7 +75,7 @@ ui <- fluidPage(theme = shinytheme("flatly"),
                         downloadButton("downloadReport"),
                         #link my github account and the code
                         hr(),
-                        HTML('<p>Report a <a href="https://github.com/AntoineSoetewey/statistics-202/issues">bug</a> or view the <a href="https://github.com/AntoineSoetewey/statistics-202/blob/master/app.R">code</a>'),
+                        HTML('<p>Report a <a href="https://github.com/ridhimasaxena/SpotifyData/issues">bug</a> or view the <a href="https://github.com/ridhimasaxena/SpotifyData/blob/master/ShinyCode">code</a>'),
                         
                       ),           
                       mainPanel(
@@ -179,15 +177,11 @@ ui <- fluidPage(theme = shinytheme("flatly"),
     })      
 
     output$summary <- renderPrint({
-      #     y <- extract(input$y)
-      #     x <- extract(input$x)
       multRegModel = lm(top50$Popularity~top50$Beats.Per.Minute+top50$Energy+top50$Danceability+top50$Loudness..dB..+top50$Liveness+top50$Valence+top50$Length+top50$Acousticness+top50$Speechiness,data=top50)
       summary(multRegModel)
     })
     
     output$results <- renderUI({
-      #     y <- extract(input$y)
-      #     x <- extract(input$x)
       multRegModel = lm(top50$Popularity~top50$Beats.Per.Minute+top50$Energy+top50$Danceability+top50$Loudness..dB..+top50$Liveness+top50$Valence+top50$Length+top50$Acousticness+top50$Speechiness,data=top50)
       
       withMathJax(
